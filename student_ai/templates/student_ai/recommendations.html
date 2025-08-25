@@ -1,0 +1,24 @@
+{% extends "main_app/base.html" %}
+{% block page_title %}
+Student Recommendations
+{% endblock page_title %}
+
+{% block content %}
+<h2>Automated Recommendations</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="student_id">Student ID:</label>
+    <input type="text" name="student_id" id="student_id">
+    <button type="submit">Get Recommendations</button>
+</form>
+
+{% if recs %}
+    <h3>Recommendations:</h3>
+    <ul>
+        {% for rec in recs %}
+            <li>{{ rec }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock content %}

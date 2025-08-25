@@ -1,0 +1,26 @@
+{% extends "main_app/base.html" %}
+
+{% block page_title %}
+Performance Analysis
+{% endblock page_title %}
+
+{% block content %}
+<h2>Student Performance Analysis</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="student_id">Student ID:</label>
+    <input type="text" name="student_id" id="student_id">
+    <button type="submit">Analyze</button>
+</form>
+
+{% if analysis %}
+    <h3>Analysis Result:</h3>
+    <ul>
+        <li>Average Score: {{ analysis.average_score }}</li>
+        <li>Highest Score: {{ analysis.highest_score }}</li>
+        <li>Lowest Score: {{ analysis.lowest_score }}</li>
+        <li>Performance Trend: {{ analysis.trend }}</li>
+    </ul>
+{% endif %}
+{% endblock content %}
